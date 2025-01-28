@@ -1,0 +1,80 @@
+2025-01-27 13:06:15,859 - core.logging_config - DEBUG - DEBUG: otp_sending_service is initialized
+2025-01-27 13:17:31,005 - core.logging_config - DEBUG - DEBUG: otp_sending_service is initialized
+2025-01-27 13:17:53,015 - core.logging_config - DEBUG - DEBUG: otp_sending_service is initialized
+2025-01-27 13:18:12,210 - core.logging_config - DEBUG - DEBUG: otp_sending_service is initialized
+2025-01-27 13:21:05,558 - core.logging_config - DEBUG - DEBUG: otp_sending_service is initialized
+2025-01-27 13:21:06,563 - core.logging_config - ERROR - Failed to send OTP: 400 Client Error:  for url: https://cpaas.messagecentral.com/verification/v3/send?countryCode=91&otpLength=6&customerId=C-2269F98FDB4B464&flowType=SMS&mobileNumber=9044224967
+2025-01-27 13:51:18,644 - core.logging_config - DEBUG - DEBUG: otp_sending_service is initialized
+2025-01-27 13:51:19,717 - core.logging_config - ERROR - Failed to send OTP: 400 Client Error:  for url: https://cpaas.messagecentral.com/verification/v3/send?countryCode=91&otpLength=6&customerId=C-2269F98FDB4B464&flowType=SMS&mobileNumber=9044224967
+2025-01-27 14:10:29,606 - core.logging_config - DEBUG - DEBUG: otp_sending_service is initialized
+2025-01-27 14:10:30,384 - core.logging_config - DEBUG - OTP sent successfully. Response: {"responseCode":508,"message":"insufficient credits","data":{"responseCode":"508","errorMessage":"insufficient credits"}}
+2025-01-27 14:16:51,602 - core.logging_config - DEBUG - DEBUG: otp_sending_service is initialized
+2025-01-27 14:16:52,806 - core.logging_config - DEBUG - OTP sent successfully. Response: {"responseCode":200,"message":"SUCCESS","data":{"verificationId":"1750524","mobileNumber":"9044224969","responseCode":"200","timeout":"60.0","transactionId":"c9f2b15d-beba-4001-bb95-3f9e1f1b5436"}}
+2025-01-27 14:21:34,066 - core.logging_config - ERROR - Checking if mobile number --- is already registered.
+2025-01-27 14:22:04,681 - core.logging_config - ERROR - Checking if mobile number --- is already registered.
+2025-01-27 14:22:04,682 - core.logging_config - ERROR - Checking if mobile number 1--- is already registered.
+2025-01-27 14:28:11,958 - core.logging_config - ERROR - Checking if mobile number --- is already registered.
+2025-01-27 14:28:11,959 - core.logging_config - ERROR - Checking if mobile number 1--- is already registered.
+2025-01-27 14:30:59,163 - core.logging_config - ERROR - Checking if mobile number --- is already registered.
+2025-01-27 14:30:59,164 - core.logging_config - ERROR - Checking if mobile number 1--- is already registered.
+2025-01-27 14:30:59,165 - core.logging_config - ERROR - Checking if mobile number 2--- is already registered.
+2025-01-27 14:30:59,165 - core.logging_config - ERROR - Checking if mobile number 3--- is already registered.
+2025-01-27 14:30:59,165 - core.logging_config - ERROR - Checking if mobile number 9044224967 is already registered.
+2025-01-27 14:30:59,166 - core.logging_config - DEBUG - DEBUG: otp_sending_service is initialized
+2025-01-27 14:31:00,645 - core.logging_config - DEBUG - OTP sent successfully. Response: {"responseCode":200,"message":"SUCCESS","data":{"verificationId":"1750730","mobileNumber":"9044224967","responseCode":"200","timeout":"60.0","transactionId":"6f086851-8f31-4be7-ba84-8fe10ce17b8c"}}
+2025-01-27 16:42:21,798 - core.logging_config - DEBUG - OTP sent successfully. Response: {"responseCode":200,"message":"SUCCESS","data":{"verificationId":"1751759","mobileNumber":"9044224967","responseCode":"200","timeout":"60.0","transactionId":"0ce46105-e84f-4741-ad69-43fad2505116"}}
+2025-01-27 17:44:10,205 - core.logging_config - ERROR - Failed to verify OTP: 400 Client Error:  for url: https://cpaas.messagecentral.com/verification/v3/validateOtp?countryCode=91&mobileNumber=9044224967&verificationId=1750730&customerId=C-D59CD8813E45480&code=637161
+2025-01-27 17:46:29,066 - core.logging_config - DEBUG - {"responseCode":505,"message":"verificationId is invalid","data":null}
+2025-01-27 17:46:29,067 - core.logging_config - ERROR - Failed to verify OTP: 400 Client Error:  for url: https://cpaas.messagecentral.com/verification/v3/validateOtp?countryCode=91&mobileNumber=9044224967&verificationId=1750730&customerId=C-D59CD8813E45480&code=637161
+2025-01-27 17:49:16,297 - core.logging_config - DEBUG - {"responseCode":505,"message":"verificationId is invalid","data":null}
+2025-01-27 17:49:16,298 - core.logging_config - ERROR - Failed to verify OTP: 400 Client Error:  for url: https://cpaas.messagecentral.com/verification/v3/validateOtp?countryCode=91&mobileNumber=9044224967&verificationId=1750730&customerId=C-D59CD8813E45480&code=637161
+2025-01-27 17:50:36,159 - core.logging_config - DEBUG - {"responseCode":505,"message":"verificationId is invalid","data":null}
+2025-01-27 17:50:36,160 - core.logging_config - DEBUG - _validate_otp res Invalid verification ID.
+2025-01-27 17:51:07,621 - core.logging_config - DEBUG - OTP sent successfully. Response: {"responseCode":200,"message":"SUCCESS","data":{"verificationId":"1752048","mobileNumber":"9044224967","responseCode":"200","timeout":"60.0","transactionId":"0bb4e9e4-deae-469d-9492-042ca58e7ef4"}}
+2025-01-27 17:51:38,231 - core.logging_config - DEBUG - {"responseCode":200,"message":"SUCCESS","data":{"verificationId":1752048,"mobileNumber":"9044224967","verificationStatus":"VERIFICATION_COMPLETED","responseCode":"200","errorMessage":null,"transactionId":null,"authToken":null}}
+2025-01-27 17:51:38,240 - core.logging_config - DEBUG - _validate_otp res OTP validated successfully.
+2025-01-27 17:53:41,427 - core.logging_config - DEBUG - {"responseCode":505,"message":"verificationId is invalid","data":null}
+2025-01-27 17:53:41,430 - core.logging_config - DEBUG - _validate_otp res Invalid verification ID.
+2025-01-27 17:55:40,618 - core.logging_config - DEBUG - OTP sent successfully. Response: {"responseCode":200,"message":"SUCCESS","data":{"verificationId":"1752061","mobileNumber":"9044224967","responseCode":"200","timeout":"60.0","transactionId":"f46ab1dd-1a4a-4f16-af9d-cf0a22da18d3"}}
+2025-01-27 17:56:16,934 - core.logging_config - DEBUG - {"responseCode":200,"message":"SUCCESS","data":{"verificationId":1752061,"mobileNumber":"9044224967","verificationStatus":"VERIFICATION_COMPLETED","responseCode":"200","errorMessage":null,"transactionId":null,"authToken":null}}
+2025-01-27 17:56:16,943 - core.logging_config - DEBUG - _validate_otp res OTP validated successfully.
+2025-01-27 18:06:16,008 - core.logging_config - DEBUG - {"responseCode":505,"message":"verificationId is invalid","data":null}
+2025-01-27 18:06:16,010 - core.logging_config - DEBUG - _validate_otp res Invalid verification ID.
+2025-01-27 18:06:58,737 - core.logging_config - DEBUG - user_data  {'id': 'b942f990-130b-448b-8188-4b15b3e25825', 'name': 'shivam', 'age': 28, 'gender': None, 'mobile_number': '9044224967', 'photo_url': None, 'is_verified': True, 'created_at': '2025-01-27T14:10:30.385387Z'}
+2025-01-27 18:08:32,006 - core.logging_config - DEBUG - user_data  {'id': 'b942f990-130b-448b-8188-4b15b3e25825', 'name': 'shivam', 'age': 28, 'gender': None, 'mobile_number': '9044224967', 'photo_url': None, 'is_verified': True, 'created_at': '2025-01-27T14:10:30.385387Z'}
+2025-01-27 18:16:10,176 - core.logging_config - DEBUG - user_data  {'id': 'b942f990130b448b81884b15b3e25825', 'name': 'shivam', 'age': 28, 'gender': None, 'mobile_number': '9044224967', 'photo_url': None, 'is_verified': True, 'created_at': '2025-01-27T14:10:30.385387Z'}
+2025-01-27 18:16:43,600 - core.logging_config - DEBUG - user_data  {'id': 'b942f990-130b-448b-8188-4b15b3e25825', 'name': 'shivam', 'age': 28, 'gender': None, 'mobile_number': '9044224967', 'photo_url': None, 'is_verified': True, 'created_at': '2025-01-27T14:10:30.385387Z'}
+2025-01-27 18:16:59,157 - core.logging_config - DEBUG - user_data  {'id': 'b942f990130b448b81884b15b3e25825', 'name': 'shivam', 'age': 28, 'gender': None, 'mobile_number': '9044224967', 'photo_url': None, 'is_verified': True, 'created_at': '2025-01-27T14:10:30.385387Z'}
+2025-01-27 18:17:40,692 - core.logging_config - DEBUG - user_data  {'id': 'b942f990130b448b81884b15b3e25825', 'name': 'shivam', 'age': 28, 'gender': None, 'mobile_number': '9044224967', 'photo_url': None, 'is_verified': True, 'created_at': '2025-01-27T14:10:30.385387Z'}
+2025-01-27 18:20:44,564 - core.logging_config - DEBUG - user_data  {'id': 'b942f990130b448b81884b15b3e25825', 'name': 'shivam', 'age': 28, 'gender': None, 'mobile_number': '9044224967', 'photo_url': None, 'is_verified': True, 'created_at': '2025-01-27T14:10:30.385387Z'}
+2025-01-27 18:20:58,687 - core.logging_config - DEBUG - user_data  {'id': 'b942f990-130b-448b-8188-4b15b3e25825', 'name': 'shivam', 'age': 28, 'gender': None, 'mobile_number': '9044224967', 'photo_url': None, 'is_verified': True, 'created_at': '2025-01-27T14:10:30.385387Z'}
+2025-01-27 18:22:28,212 - core.logging_config - DEBUG - user_data  {'id': 'b942f990-130b-448b-8188-4b15b3e25825', 'name': 'shivam', 'age': 28, 'gender': None, 'mobile_number': '9044224967', 'photo_url': None, 'is_verified': True, 'created_at': '2025-01-27T14:10:30.385387Z'}
+2025-01-27 18:24:03,540 - core.logging_config - DEBUG - user_data  {'id': 'b942f990-130b-448b-8188-4b15b3e25825', 'name': 'shivam', 'age': 28, 'gender': None, 'mobile_number': '9044224967', 'photo_url': None, 'is_verified': True, 'created_at': '2025-01-27T14:10:30.385387Z'}
+2025-01-27 18:24:03,541 - core.logging_config - DEBUG - token  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI5NDJmOTkwLTEzMGItNDQ4Yi04MTg4LTRiMTViM2UyNTgyNSIsIm1vYmlsZV9udW1iZXIiOiI5MDQ0MjI0OTY3IiwiZXhwIjo4NjQwMH0.6AYZma2p6VC3TzPg18PA9WXJMLJ4N5h6zyzffLF70aQ
+2025-01-27 18:28:16,078 - core.logging_config - ERROR - Invalid mobile number: (True, None)
+2025-01-27 18:29:49,834 - core.logging_config - ERROR - Invalid mobile number: (True, None)
+2025-01-27 18:30:24,254 - core.logging_config - ERROR - Invalid mobile number: (False, 86)
+2025-01-27 18:30:29,421 - core.logging_config - ERROR - Invalid mobile number: (False, 80)
+2025-01-27 18:30:30,480 - core.logging_config - ERROR - Invalid mobile number: (False, 79)
+2025-01-27 18:30:32,362 - core.logging_config - ERROR - Invalid mobile number: (False, 77)
+2025-01-27 18:30:33,469 - core.logging_config - ERROR - Invalid mobile number: (False, 76)
+2025-01-27 18:30:34,180 - core.logging_config - ERROR - Invalid mobile number: (False, 76)
+2025-01-27 18:30:34,796 - core.logging_config - ERROR - Invalid mobile number: (False, 75)
+2025-01-27 18:30:36,550 - core.logging_config - ERROR - Invalid mobile number: (False, 73)
+2025-01-27 18:30:38,472 - core.logging_config - ERROR - Invalid mobile number: (False, 71)
+2025-01-27 18:30:39,457 - core.logging_config - ERROR - Invalid mobile number: (False, 70)
+2025-01-27 18:30:43,025 - core.logging_config - ERROR - Invalid mobile number: (False, 67)
+2025-01-27 18:30:43,904 - core.logging_config - ERROR - Invalid mobile number: (False, 66)
+2025-01-27 18:30:44,493 - core.logging_config - ERROR - Invalid mobile number: (False, 65)
+2025-01-27 18:30:53,059 - core.logging_config - ERROR - Invalid mobile number: (False, 57)
+2025-01-27 18:31:00,893 - core.logging_config - ERROR - Invalid mobile number: (False, 49)
+2025-01-27 18:31:01,738 - core.logging_config - ERROR - Invalid mobile number: (False, 48)
+2025-01-27 18:31:02,408 - core.logging_config - ERROR - Invalid mobile number: (False, 47)
+2025-01-27 18:44:00,549 - core.logging_config - ERROR - Invalid mobile number: (True, None)
+2025-01-27 18:44:05,574 - core.logging_config - DEBUG - user_data  {'id': 'b942f990-130b-448b-8188-4b15b3e25825', 'name': 'shivam', 'age': 28, 'gender': None, 'mobile_number': '9044224967', 'photo_url': None, 'is_verified': True, 'created_at': '2025-01-27T14:10:30.385387Z'}
+2025-01-27 18:44:05,574 - core.logging_config - DEBUG - token  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI5NDJmOTkwLTEzMGItNDQ4Yi04MTg4LTRiMTViM2UyNTgyNSIsIm1vYmlsZV9udW1iZXIiOiI5MDQ0MjI0OTY3IiwiZXhwIjo4NjQwMH0.6AYZma2p6VC3TzPg18PA9WXJMLJ4N5h6zyzffLF70aQ
+2025-01-27 18:45:26,494 - core.logging_config - ERROR - Invalid mobile number: (True, None)
+2025-01-27 18:45:28,401 - core.logging_config - DEBUG - user_data  {'id': 'b942f990-130b-448b-8188-4b15b3e25825', 'name': 'shivam', 'age': 28, 'gender': None, 'mobile_number': '9044224967', 'photo_url': None, 'is_verified': True, 'created_at': '2025-01-27T14:10:30.385387Z'}
+2025-01-27 18:45:28,401 - core.logging_config - DEBUG - token  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI5NDJmOTkwLTEzMGItNDQ4Yi04MTg4LTRiMTViM2UyNTgyNSIsIm1vYmlsZV9udW1iZXIiOiI5MDQ0MjI0OTY3IiwiZXhwIjo4NjQwMH0.6AYZma2p6VC3TzPg18PA9WXJMLJ4N5h6zyzffLF70aQ
+2025-01-27 18:45:33,053 - core.logging_config - ERROR - Invalid mobile number: (False, 53)
+2025-01-27 18:45:36,659 - core.logging_config - ERROR - Invalid mobile number: (False, 50)
