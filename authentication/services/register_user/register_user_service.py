@@ -17,8 +17,8 @@ class UserRegistrationService:
             mobile_number = serializer.validated_data['mobile_number']
 
             response = self.otp_sending_service.handle_otp_sending(mobile_number)
-            print(f"response {response}")
-            if response.get("code") == status.HTTP_201_CREATED:
+
+            if response.data['code'] == status.HTTP_201_CREATED:
                 serializer.save(is_verified=False)
             return response
 

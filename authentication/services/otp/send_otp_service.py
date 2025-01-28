@@ -38,7 +38,7 @@ class SendOTPService:
         Handles OTP sending logic, including rate-limiting checks and OTP generation.
         """
         allowed, retry_time = self.otp_sending_service.is_retry_allowed(mobile_number)
-        medimeetlogger.error(f"Invalid mobile number: {allowed, retry_time}")
+        medimeetlogger.error(f"is Allowed mobile number: {allowed, retry_time}")
 
         if not allowed:
             return create_response(
