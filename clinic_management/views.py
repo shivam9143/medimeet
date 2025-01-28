@@ -46,29 +46,25 @@ class DoctorListAPIView(APIView):
         )
 
 
-@api_view(['GET'])
-@permission_classes([AllowAny])
-class SlotListView(generics.ListAPIView):
-    serializer_class = SlotSerializer
+class SlotListView(APIView):
+    permission_classes = [AllowAny]
 
-    # permission_classes = [IsAuthenticated]
-
-    def get_queryset(self):
-        doctor_id = self.kwargs['doctor_id']
+    def get(self, request, doctor_id, *args, **kwargs):
+        # Get the doctor schedule for the given doctor_id
         doctor_schedule = DoctorSchedule.objects.filter(doctor_id=doctor_id)
 
+        # Check if any schedule exists for the doctor, if not return empty response
         if not doctor_schedule.exists():
-            return Slot.objects.none()  # Return empty queryset if no schedule found
+            return Response([], status=status.HTTP_200_OK)
 
+        # Filter the slots related to the doctor and only available slots
         slots = Slot.objects.filter(doctor_schedule__in=doctor_schedule, is_available=True)
 
-        return slots
+        # Serialize the data
+        serializer = SlotSerializer(slots, many=True)
 
-    def list(self, request, *args, **kwargs):
-        queryset = self.get_queryset()
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
-
+        # Return the response with serialized data
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 class ScheduleAppointmentView(APIView):
     def post(self, request):
