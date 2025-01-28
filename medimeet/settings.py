@@ -52,7 +52,7 @@ REDIS_PORT = 6379
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'https://ec2-3-109-212-177.ap-south-1.compute.amazonaws.com/','3.109.212.177', 'api.rabattindia.com']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'https://ec2-3-109-212-177.ap-south-1.compute.amazonaws.com/','3.109.212.177', 'api.rabattindia.com', '13.203.165.249']
 
 
 
@@ -67,7 +67,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authentication',
     'core',
-    'clinic_management'
+    'clinic_management',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -78,6 +79,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 CACHES = {
@@ -95,6 +97,12 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 }
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:57992/"
+]
 
 ROOT_URLCONF = 'medimeet.urls'
 
