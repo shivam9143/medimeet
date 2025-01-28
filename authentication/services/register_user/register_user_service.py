@@ -17,8 +17,7 @@ class UserRegistrationService:
             mobile_number = serializer.validated_data['mobile_number']
 
             response = self.otp_sending_service.handle_otp_sending(mobile_number)
-            if response:  # If response exists, return it (indicates error or OTP sent)
-                return response
-
+            if response.get("code") == status.HTTP_201_CREATED:
+                serializer.save(is_verified=False)
         return create_response(code=status.HTTP_400_BAD_REQUEST, error=str(serializer.errors),
                                message="Something went wrong!")
