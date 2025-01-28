@@ -5,6 +5,9 @@ description = ""
 authors = ["Shivam Kanodia <107026221+shivamkanodia9143@users.noreply.github.com>"]
 readme = "README.md"
 
+# Disable package mode
+package-mode = false
+
 [tool.poetry.dependencies]
 python = "^3.11"
 django = "^5.1.5"
@@ -15,6 +18,7 @@ django-redis = "^5.4.0"
 django-environ = "^0.12.0"
 injector = "^0.22.0"
 requests = "^2.32.3"
+gunicorn = "^23.0.0"
 
 
 [tool.poetry.group.dev.dependencies]
