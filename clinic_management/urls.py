@@ -1,6 +1,6 @@
 # clinic_management/urls.py
 from django.urls import path
-from .views import DoctorListView, SlotListView
+from .views import  SlotListView
 
 urlpatterns = [
     # path('doctors/', DoctorListView.as_view(), name='doctor-list'),

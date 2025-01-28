@@ -18,13 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 
 from authentication.views import RegisterUserAPIView, VerifyOTPAPIView, SendOtpAPIView
-from clinic_management.views import DoctorListView, ScheduleAppointmentView
+from clinic_management.views import ScheduleAppointmentView, DoctorListAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register-user/', RegisterUserAPIView.as_view(), name="register-user"),
     path('send-otp/', SendOtpAPIView.as_view(), name="send-otp"),
     path("verify-otp/", VerifyOTPAPIView.as_view(), name="verify-user"),
-    path('doctors/', DoctorListView.as_view(), name='doctor-list'),
+    path('doctors/', DoctorListAPIView.as_view(), name='doctor-list'),
     # path('clinic-management/', include('clinic_management.urls')),  # Include the doctor app urls with prefix 'api/'
 ]

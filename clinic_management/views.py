@@ -3,6 +3,8 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+
+from core.create_response import create_response
 from .models import User, Doctor, Appointment, DoctorSchedule, Slot
 from .serializers import DoctorSerializer, AppointmentSerializer, SlotSerializer
 
@@ -20,20 +22,35 @@ class ListPagination(PageNumberPagination):
     max_page_size = 100
 
 
-# Create the API view for fetching the list of doctors
-@api_view(['GET'])
-@permission_classes([AllowAny])
-class DoctorListView(generics.ListAPIView):
-    queryset = Doctor.objects.all()
-    serializer_class = DoctorSerializer
-    pagination_class = ListPagination
-    # permission_classes = [IsAuthenticated]
+class DoctorListAPIView(APIView):
+    def get(self, request, *args, **kwargs):
+        doctors = Doctor.objects.all()
+
+        if not doctors.exists():
+            # Return 404 with a custom message
+            msg = "Doctors not found"
+            return create_response(
+                code=status.HTTP_404_NOT_FOUND,
+                message=msg,
+                error=msg,
+                data=None
+            )
+
+        # Serialize the data
+        serializer = DoctorSerializer(doctors, many=True)
+        return create_response(
+            code=status.HTTP_200_OK,
+            message="Doctors retrieved successfully",
+            error=None,
+            data=serializer.data
+        )
 
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
 class SlotListView(generics.ListAPIView):
     serializer_class = SlotSerializer
+
     # permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
