@@ -19,5 +19,7 @@ class UserRegistrationService:
             response = self.otp_sending_service.handle_otp_sending(mobile_number)
             if response.get("code") == status.HTTP_201_CREATED:
                 serializer.save(is_verified=False)
+                return response
+
         return create_response(code=status.HTTP_400_BAD_REQUEST, error=str(serializer.errors),
                                message="Something went wrong!")
