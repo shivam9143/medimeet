@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from authentication.views import RegisterUserAPIView, VerifyOTPAPIView, SendOtpAPIView
 from clinic_management.views import DoctorListView, ScheduleAppointmentView
@@ -25,6 +25,5 @@ urlpatterns = [
     path('register-user/', RegisterUserAPIView.as_view(), name="register-user"),
     path('send-otp/', SendOtpAPIView.as_view(), name="send-otp"),
     path("verify-otp/", VerifyOTPAPIView.as_view(), name="verify-user"),
-    path('doctors/', DoctorListView.as_view(), name='doctor-list'),
-    path('appointments/', ScheduleAppointmentView.as_view(), name='schedule-appointment'),
+    path('clinic-management/', include('clinic_management.urls')),  # Include the doctor app urls with prefix 'api/'
 ]

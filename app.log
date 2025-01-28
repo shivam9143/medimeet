@@ -98,3 +98,6 @@
 2025-01-28 11:37:19,760 - core.logging_config - ERROR - is Allowed mobile number: (True, None)
 2025-01-28 11:38:16,135 - core.logging_config - ERROR - is Allowed mobile number: (False, 4)
 2025-01-28 11:38:50,094 - core.logging_config - ERROR - is Allowed mobile number: (True, None)
+2025-01-28 13:05:15,618 - core.logging_config - ERROR - is Allowed mobile number: (True, None)
+2025-01-28 13:05:21,282 - core.logging_config - DEBUG - user_data  {'id': 'a4cf0f6a-5ea0-4544-952a-bc8cf3f5b823', 'name': 'Shivam Kanodia', 'age': 29, 'gender': 'Male', 'mobile_number': '9044224967', 'photo_url': None, 'is_verified': True, 'created_at': '2025-01-28T11:40:53.645162Z'}
+2025-01-28 13:05:21,283 - core.logging_config - DEBUG - token  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE0Y2YwZjZhLTVlYTAtNDU0NC05NTJhLWJjOGNmM2Y1YjgyMyIsIm1vYmlsZV9udW1iZXIiOiI5MDQ0MjI0OTY3IiwiZXhwIjo4NjQwMH0._mJnOW_o-39eKBcKDXhnvzmoJkzqlqQI77qYcZ5nMRk
