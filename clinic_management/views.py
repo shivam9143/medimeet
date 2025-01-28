@@ -1,3 +1,7 @@
+import json
+
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.views import APIView
@@ -66,6 +70,7 @@ class SlotListView(APIView):
         # Return the response with serialized data
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+
 class ScheduleAppointmentView(APIView):
     def post(self, request):
         serializer = AppointmentSerializer(data=request.data)
@@ -73,3 +78,50 @@ class ScheduleAppointmentView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class BookAppointmentView(APIView):
+
+    def post(self, request, *args, **kwargs):
+        # Get the request body data (assuming it's JSON)
+        try:
+            data = json.loads(request.body)
+            slot_id = data.get('slot_id')
+        except (json.JSONDecodeError, KeyError):
+            return create_response(status.HTTP_400_BAD_REQUEST, error="'Invalid data")
+
+        # Check if the slot exists and is available
+        try:
+            slot = Slot.objects.get(id=slot_id)
+            if not slot.is_available:
+                create_response(status.HTTP_400_BAD_REQUEST, error="Slot is not available",
+                                message="Something went wrong")
+        except Slot.DoesNotExist:
+            create_response(status.HTTP_404_NOT_FOUND, error="Slot not found.", message="Something went wrong")
+
+        # Create an appointment (assuming Appointment model exists)
+        try:
+            # Create the appointment record
+            appointment = Appointment.objects.create(
+                user=request.user,  # The user making the request (ensure they are authenticated)
+                slot=slot,
+                doctor=slot.doctor_schedule.doctor,
+                appointment_time=slot.start_time,
+                status='Booked'
+            )
+
+            # Mark the slot as booked
+            slot.is_available = False
+            slot.save()
+
+            # Return the appointment details as the response
+            return create_response(code=status.HTTP_201_CREATED, data={
+                "id": appointment.id,
+                "user": appointment.user.id,
+                "doctor": appointment.doctor.id,
+                "appointment_time": appointment.appointment_time.isoformat(),
+                "status": appointment.status
+            })
+
+        except Exception as e:
+            return create_response(code=status.HTTP_400_BAD_REQUEST, error=str(e))

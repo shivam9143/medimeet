@@ -13,7 +13,7 @@ class DoctorSerializer(serializers.ModelSerializer):
 class SlotSerializer(serializers.ModelSerializer):
     class Meta:
         model = Slot
-        fields = ['start_time', 'end_time', 'is_available']
+        fields = ['id', 'start_time', 'end_time', 'is_available']
 
 
 class AppointmentSerializer(serializers.ModelSerializer):
