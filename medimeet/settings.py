@@ -100,9 +100,6 @@ REST_FRAMEWORK = {
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:57992/"
-]
 
 ROOT_URLCONF = 'medimeet.urls'
 
