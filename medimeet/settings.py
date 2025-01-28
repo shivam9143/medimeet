@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 import environ
 
@@ -52,7 +52,8 @@ REDIS_PORT = 6379
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'https://ec2-3-109-212-177.ap-south-1.compute.amazonaws.com/','3.109.212.177', 'api.rabattindia.com']
+
 
 
 # Application definition
@@ -159,6 +160,16 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
+
+# Static files
+STATIC_URL = '/static/'  # URL prefix for static files
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # For collected static files
+
+# Media files
+MEDIA_URL = '/media/'  # URL prefix for media files
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Directory for uploaded media
+
 
 LANGUAGE_CODE = 'en-us'
 
