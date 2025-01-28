@@ -78,3 +78,10 @@
 2025-01-27 18:45:28,401 - core.logging_config - DEBUG - token  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI5NDJmOTkwLTEzMGItNDQ4Yi04MTg4LTRiMTViM2UyNTgyNSIsIm1vYmlsZV9udW1iZXIiOiI5MDQ0MjI0OTY3IiwiZXhwIjo4NjQwMH0.6AYZma2p6VC3TzPg18PA9WXJMLJ4N5h6zyzffLF70aQ
 2025-01-27 18:45:33,053 - core.logging_config - ERROR - Invalid mobile number: (False, 53)
 2025-01-27 18:45:36,659 - core.logging_config - ERROR - Invalid mobile number: (False, 50)
+2025-01-28 11:26:18,597 - core.logging_config - ERROR - Invalid mobile number: (True, None)
+2025-01-28 11:26:43,202 - core.logging_config - ERROR - Invalid mobile number: (False, 35)
+2025-01-28 11:27:35,079 - core.logging_config - ERROR - Invalid mobile number: (True, None)
+2025-01-28 11:27:43,527 - core.logging_config - ERROR - Invalid mobile number: (False, 52)
+2025-01-28 11:28:30,920 - core.logging_config - ERROR - Invalid mobile number: (False, 4)
+2025-01-28 11:28:35,061 - core.logging_config - ERROR - Invalid mobile number: (False, 0)
+2025-01-28 11:28:37,355 - core.logging_config - ERROR - Invalid mobile number: (True, None)
