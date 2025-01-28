@@ -44,7 +44,7 @@ class VerifyOTPAPIView(APIView):
     def __init__(self, **kwargs):
         self.otp_verification_service = auth_injector_instance.get(OTPVerificationService)
 
-    def get(self, request):
+    def post(self, request):
         serializer = OTPVerificationSerializer(data=request.data)
 
         if serializer.is_valid():
