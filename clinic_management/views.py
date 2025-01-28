@@ -1,4 +1,5 @@
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -20,6 +21,8 @@ class ListPagination(PageNumberPagination):
 
 
 # Create the API view for fetching the list of doctors
+@api_view(['GET'])
+@permission_classes([AllowAny])
 class DoctorListView(generics.ListAPIView):
     queryset = Doctor.objects.all()
     serializer_class = DoctorSerializer
@@ -27,6 +30,8 @@ class DoctorListView(generics.ListAPIView):
     # permission_classes = [IsAuthenticated]
 
 
+@api_view(['GET'])
+@permission_classes([AllowAny])
 class SlotListView(generics.ListAPIView):
     serializer_class = SlotSerializer
     # permission_classes = [IsAuthenticated]
