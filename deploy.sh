@@ -44,7 +44,7 @@ sudo systemctl stop "$GUNICORN_SERVICE"
 
 # Start Gunicorn with Poetry
 echo "Starting Gunicorn using Poetry environment..."
-poetry run gunicorn --workers 3 finance_buddy_api.wsgi:application --bind 0.0.0.0:8000 &
+poetry run gunicorn --workers 3 medimeet.wsgi:application --bind 0.0.0.0:8000 &
 
 # Restart NGINX
 echo "Restarting Nginx..."

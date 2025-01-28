@@ -3,7 +3,7 @@ name = "medimeet"
 version = "0.1.0"
 description = ""
 authors = ["Shivam Kanodia <107026221+shivamkanodia9143@users.noreply.github.com>"]
-readme = "README.md"
+#readme = "README.md"
 
 # Disable package mode
 package-mode = false
