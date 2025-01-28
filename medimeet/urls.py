@@ -25,5 +25,6 @@ urlpatterns = [
     path('register-user/', RegisterUserAPIView.as_view(), name="register-user"),
     path('send-otp/', SendOtpAPIView.as_view(), name="send-otp"),
     path("verify-otp/", VerifyOTPAPIView.as_view(), name="verify-user"),
-    path('clinic-management/', include('clinic_management.urls')),  # Include the doctor app urls with prefix 'api/'
+    path('doctors/', DoctorListView.as_view(), name='doctor-list'),
+    # path('clinic-management/', include('clinic_management.urls')),  # Include the doctor app urls with prefix 'api/'
 ]
