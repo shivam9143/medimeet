@@ -85,10 +85,8 @@ class SendOTPService:
                 }
             )
         else:  # Failure case
-            error_message = response.get("message", "Failed to send OTP.")
             return create_response(
                 code=status.HTTP_400_BAD_REQUEST,
-                error=error_message,
+                error="Failed to send OTP",
                 message="Something went wrong!"
             )
-

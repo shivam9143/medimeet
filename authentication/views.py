@@ -3,6 +3,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from core.create_response import create_response
 from .di.injector_config import auth_injector_instance
 from .serializers import OTPVerificationSerializer
 from authentication.services.verify_otp.otp_verification_service import OTPVerificationService
@@ -55,4 +56,7 @@ class VerifyOTPAPIView(APIView):
             # Delegate the verification to the service
             return self.otp_verification_service.verify_user(mobile_number, otp, verification_id)
 
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        # Serialize the error details to extract actual messages (strings)
+        error_details = {key: [str(value[0])] for key, value in serializer.errors.items()}
+
+        return create_response(error=error_details, code=status.HTTP_400_BAD_REQUEST, message="Something went wrong")
