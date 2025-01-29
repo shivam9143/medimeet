@@ -34,9 +34,17 @@ poetry run python manage.py migrate
 echo "Collecting static files..."
 poetry run python manage.py collectstatic --noinput
 
-# Restart Redis
-echo "Restarting Redis..."
-sudo systemctl restart redis
+# Restart Redis if it's already running, or start it if not running
+echo "Checking if Redis is running..."
+if ! pgrep -x "redis-server" > /dev/null
+then
+    echo "Redis is not running. Starting Redis..."
+    # Start Redis server in the background
+    redis-server &
+else
+    echo "Redis is already running. Restarting Redis..."
+    sudo systemctl restart redis
+fi
 
 # Stop Gunicorn
 echo "Stopping Gunicorn..."
