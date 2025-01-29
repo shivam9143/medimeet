@@ -129,3 +129,7 @@
 2025-01-29 12:57:35,094 - core.logging_config - DEBUG - user_data  {'id': '5468066d-cc9b-4f75-b38b-690a8aa39046', 'name': 'Shivam Kanodia', 'age': 28, 'gender': 'Male', 'mobile_number': '9044224967', 'photo_url': None, 'is_verified': True, 'created_at': '2025-01-29T03:12:46.156620Z'}
 2025-01-29 12:57:35,094 - core.logging_config - DEBUG - user_data user_id  5468066d-cc9b-4f75-b38b-690a8aa39046
 2025-01-29 12:57:35,095 - core.logging_config - DEBUG - token  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM4MTU5MDU1LCJpYXQiOjE3MzgxNTU0NTUsImp0aSI6ImI2NTA1MGQ0YzkwYjQ0YmI4YTRhMzBhYWUxM2ExZDI3IiwidXNlcl9pZCI6IjU0NjgwNjZkLWNjOWItNGY3NS1iMzhiLTY5MGE4YWEzOTA0NiJ9.vrLtsYuOTXLzb0P3UXPrfJ7YBo7M2nA521bklaIK3rA
+2025-01-29 19:21:08,880 - core.logging_config - ERROR - is Allowed mobile number: (True, None)
+2025-01-29 19:22:56,716 - core.logging_config - ERROR - is Allowed mobile number: (True, None)
+2025-01-29 19:25:15,441 - core.logging_config - ERROR - is Allowed mobile number: (True, None)
+2025-01-29 19:25:16,644 - core.logging_config - DEBUG - OTP sent successfully. Response: {"responseCode":200,"message":"SUCCESS","data":{"verificationId":"1776654","mobileNumber":"6307788639","responseCode":"200","timeout":"60.0","transactionId":"a15bafa8-c7e5-477f-b700-383487af6857"}}
