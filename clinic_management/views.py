@@ -84,44 +84,53 @@ class BookAppointmentView(APIView):
 
     def post(self, request, *args, **kwargs):
         # Get the request body data (assuming it's JSON)
-        try:
-            data = json.loads(request.body)
-            slot_id = data.get('slot_id')
-        except (json.JSONDecodeError, KeyError):
-            return create_response(status.HTTP_400_BAD_REQUEST, error="'Invalid data")
+        slot_id = kwargs.get('slot_id')
+        print(f"slot id {slot_id}")
+        print("heree 001")
 
-        # Check if the slot exists and is available
+    # Check if the slot exists and is available
         try:
             slot = Slot.objects.get(id=slot_id)
+            print(f"Slot availability: {slot.is_available}")
+
+            print("heree 002")
             if not slot.is_available:
+                print("heree 003")
                 create_response(status.HTTP_400_BAD_REQUEST, error="Slot is not available",
                                 message="Something went wrong")
         except Slot.DoesNotExist:
+            print("heree 004")
             create_response(status.HTTP_404_NOT_FOUND, error="Slot not found.", message="Something went wrong")
+            print("heree 00")
 
-        # Create an appointment (assuming Appointment model exists)
         try:
             # Create the appointment record
             appointment = Appointment.objects.create(
-                user=request.user,  # The user making the request (ensure they are authenticated)
+                patient=request.user,  # The user making the request (ensure they are authenticated)
                 slot=slot,
                 doctor=slot.doctor_schedule.doctor,
-                appointment_time=slot.start_time,
                 status='Booked'
             )
 
+            print("heree 11")
+            serializer = SlotSerializer(slot, data={"is_available": False}, partial=True)
+            if serializer.is_valid():
+                serializer.save()
             # Mark the slot as booked
-            slot.is_available = False
-            slot.save()
+            # slot.is_available = False
+            # slot.save()
+            # print(f"Slot saved? {serializer.is_available}")  # Debugging
+            # print("heree 33")
 
             # Return the appointment details as the response
             return create_response(code=status.HTTP_201_CREATED, data={
                 "id": appointment.id,
-                "user": appointment.user.id,
+                "patient": appointment.patient.id,
                 "doctor": appointment.doctor.id,
-                "appointment_time": appointment.appointment_time.isoformat(),
+                "appointment_time": str(slot),
                 "status": appointment.status
-            })
+            }, message="Success")
+            print("heree 44")
 
         except Exception as e:
-            return create_response(code=status.HTTP_400_BAD_REQUEST, error=str(e))
+            return create_response(code=status.HTTP_400_BAD_REQUEST, error=str(e), message="Something went wrong!")

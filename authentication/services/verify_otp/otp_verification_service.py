@@ -40,10 +40,12 @@ class OTPVerificationService(VerifyUserServiceInterface):
                 self.user_service.mark_user_verified(mobile_number)
                 user_data = UserSerializer(user).data  # This is now serialized into a dictionary
                 medimeetlogger.debug(f"user_data  {user_data}")
+                userid=user_data['id']
+                medimeetlogger.debug(f"user_data user_id  {userid}")
 
                 # Generate JWT token
                 token = self.jwt_service.generate_jwt(
-                    user={"id": user_data["id"], "mobile_number": user_data["mobile_number"]})
+                    user=user)
                 medimeetlogger.debug(f"token  {token}")
 
                 # Construct and return success response

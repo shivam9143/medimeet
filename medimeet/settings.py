@@ -21,8 +21,6 @@ env = environ.Env(
 # Read the .env file
 environ.Env.read_env()  # Optional: specify the path to your .env file
 
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -52,9 +50,8 @@ REDIS_PORT = 6379
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'https://ec2-3-109-212-177.ap-south-1.compute.amazonaws.com/','3.109.212.177', 'api.rabattindia.com', '13.203.165.249']
-
-
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'https://ec2-3-109-212-177.ap-south-1.compute.amazonaws.com/',
+                 '3.109.212.177', 'api.rabattindia.com', '13.203.165.249']
 
 # Application definition
 
@@ -83,7 +80,6 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
-
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
@@ -96,12 +92,11 @@ CACHES = {
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
+        'CustomJWTAuthentication.CustomJWTAuthentication',
+    )
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
-
 
 ROOT_URLCONF = 'medimeet.urls'
 
@@ -122,7 +117,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'medimeet.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
@@ -145,7 +139,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -164,7 +157,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -177,7 +169,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # For collected static files
 MEDIA_URL = '/media/'  # URL prefix for media files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Directory for uploaded media
 
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -185,7 +176,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/

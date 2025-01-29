@@ -43,19 +43,8 @@ class DoctorSchedule(models.Model):
     # You can add additional methods to check availability or generate time slots
 
 
-class Appointment(models.Model):
-    STATUS_CHOICES = [("Scheduled", "Scheduled"), ("Canceled", "Canceled")]
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    patient = models.ForeignKey(User, on_delete=models.CASCADE)
-    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
-    time_slot = models.DateTimeField()
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="Scheduled")
-
-    def __str__(self):
-        return f"{self.patient.name}__{self.doctor.name}"
-
-
 class Slot(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     doctor_schedule = models.ForeignKey(DoctorSchedule, related_name='slots', on_delete=models.CASCADE)
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
@@ -63,3 +52,15 @@ class Slot(models.Model):
 
     def __str__(self):
         return f"Slot from {self.start_time} to {self.end_time} for {self.doctor_schedule.doctor.name}"
+
+
+class Appointment(models.Model):
+    STATUS_CHOICES = [("Scheduled", "Scheduled"), ("Canceled", "Canceled")]
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    patient = models.ForeignKey(User, on_delete=models.CASCADE)
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    slot = models.ForeignKey(Slot, on_delete=models.CASCADE)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="Scheduled")
+
+    def __str__(self):
+        return f"{self.patient.name}__{self.doctor.name}"

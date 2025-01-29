@@ -4,10 +4,11 @@ from .models import DoctorSchedule, Slot
 from datetime import datetime, timedelta
 
 
-@receiver(post_save, sender=DoctorSchedule)
-def create_slots_for_new_schedule(sender, instance, created, **kwargs):
-    if created:  # Only trigger this when a new schedule is created
-        create_slots_for_schedule(instance)
+# @receiver(post_save, sender=DoctorSchedule)
+# def create_slots_for_new_schedule(sender, instance, created, **kwargs):
+#     print("runnung ------------")
+#     if created:  # Only trigger this when a new schedule is created
+#         create_slots_for_schedule(instance)
 
 
 def create_slots_for_schedule(doctor_schedule):
