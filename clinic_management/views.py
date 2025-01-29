@@ -1,5 +1,6 @@
 import json
 
+from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view, permission_classes
@@ -93,11 +94,13 @@ class BookAppointmentView(APIView):
         try:
             slot = Slot.objects.get(id=slot_id)
         except Slot.DoesNotExist:
-            return create_response(status.HTTP_404_NOT_FOUND, error="Slot not found", message="The requested slot does not exist.")
+            return create_response(status.HTTP_404_NOT_FOUND, error="Slot not found",
+                                   message="The requested slot does not exist.")
 
         # Check if the slot is available
         if not slot.is_available:
-            return create_response(status.HTTP_400_BAD_REQUEST, error="Slot not available", message="The requested slot is already booked.")
+            return create_response(status.HTTP_400_BAD_REQUEST, error="Slot not available",
+                                   message="The requested slot is already booked.")
 
         # Attempt to create the appointment
         try:
@@ -137,12 +140,47 @@ class GetAppointmentsView(APIView):
             appointments = Appointment.objects.filter(patient=request.user)
 
             if not appointments:
-                return create_response(status.HTTP_404_NOT_FOUND, error="No appointments found", message="You have no appointments.")
+                return create_response(status.HTTP_404_NOT_FOUND, error="No appointments found",
+                                       message="You have no appointments.")
 
             # Serialize the appointments
             serializer = AppointmentSerializer(appointments, many=True)
 
-            return create_response(status.HTTP_200_OK, data=serializer.data, message="Appointments retrieved successfully.")
+            return create_response(status.HTTP_200_OK, data=serializer.data,
+                                   message="Appointments retrieved successfully.")
 
         except Exception as e:
             return create_response(status.HTTP_400_BAD_REQUEST, error=str(e), message="Something went wrong!")
+
+
+class CancelAppointmentView(APIView):
+
+    def post(self, request):
+        slot_id = request.data.get("slot_id")
+
+        if not slot_id:
+            return create_response(message="Slot ID is required.", code=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            # Get the appointment for this user and slot
+            appointment = Appointment.objects.filter(slot_id=slot_id, patient=request.user).latest('id')
+
+            # Mark the slot as available
+            slot = appointment.slot
+            slot.is_available = True
+            slot.save()
+
+            # Update appointment status to 'Cancelled' instead of deleting it
+            appointment.status = "Cancelled"
+            appointment.save()
+
+            return create_response(
+                message="Appointment cancelled successfully.",
+                code=status.HTTP_200_OK
+            )
+
+        except Appointment.DoesNotExist:
+            return create_response(
+                message="No appointment found for this slot.",
+                code=status.HTTP_404_NOT_FOUND
+            )

@@ -55,7 +55,7 @@ class Slot(models.Model):
 
 
 class Appointment(models.Model):
-    STATUS_CHOICES = [("Scheduled", "Scheduled"), ("Canceled", "Canceled")]
+    STATUS_CHOICES = [("Scheduled", "Scheduled"), ("Cancelled", "Cancelled")]
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     patient = models.ForeignKey(User, on_delete=models.CASCADE)
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)

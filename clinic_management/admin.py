@@ -32,3 +32,11 @@ class SlotAdmin(admin.ModelAdmin):
         return obj.doctor_schedule.doctor.name
 
     doctor_name.short_description = 'Doctor Name'
+
+
+@admin.register(Appointment)
+class AppointmentAdmin(admin.ModelAdmin):
+    list_display = ("id", "patient", "doctor", "slot", "status")
+    list_filter = ("status", "doctor", "patient")
+    search_fields = ("patient__name", "doctor__name", "slot__id")
+    ordering = ("-id",)

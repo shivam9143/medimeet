@@ -125,3 +125,7 @@
 2025-01-29 03:23:41,958 - core.logging_config - DEBUG - user_data  {'id': '5468066d-cc9b-4f75-b38b-690a8aa39046', 'name': 'Shivam Kanodia', 'age': 28, 'gender': 'Male', 'mobile_number': '9044224967', 'photo_url': None, 'is_verified': True, 'created_at': '2025-01-29T03:12:46.156620Z'}
 2025-01-29 03:23:41,960 - core.logging_config - DEBUG - user_data user_id  5468066d-cc9b-4f75-b38b-690a8aa39046
 2025-01-29 03:23:41,961 - core.logging_config - DEBUG - token  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM4MTI0NjIxLCJpYXQiOjE3MzgxMjEwMjEsImp0aSI6IjU0ODFmN2RiNjIzODQ0MDg4Y2UzYjg2MWYwNzgyOWY5IiwidXNlcl9pZCI6IjU0NjgwNjZkLWNjOWItNGY3NS1iMzhiLTY5MGE4YWEzOTA0NiJ9.-J61sHlir1LD1a-pHFVhc_oF65mYCYO_8B2PPYY6TL8
+2025-01-29 12:57:26,429 - core.logging_config - ERROR - is Allowed mobile number: (True, None)
+2025-01-29 12:57:35,094 - core.logging_config - DEBUG - user_data  {'id': '5468066d-cc9b-4f75-b38b-690a8aa39046', 'name': 'Shivam Kanodia', 'age': 28, 'gender': 'Male', 'mobile_number': '9044224967', 'photo_url': None, 'is_verified': True, 'created_at': '2025-01-29T03:12:46.156620Z'}
+2025-01-29 12:57:35,094 - core.logging_config - DEBUG - user_data user_id  5468066d-cc9b-4f75-b38b-690a8aa39046
+2025-01-29 12:57:35,095 - core.logging_config - DEBUG - token  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM4MTU5MDU1LCJpYXQiOjE3MzgxNTU0NTUsImp0aSI6ImI2NTA1MGQ0YzkwYjQ0YmI4YTRhMzBhYWUxM2ExZDI3IiwidXNlcl9pZCI6IjU0NjgwNjZkLWNjOWItNGY3NS1iMzhiLTY5MGE4YWEzOTA0NiJ9.vrLtsYuOTXLzb0P3UXPrfJ7YBo7M2nA521bklaIK3rA
