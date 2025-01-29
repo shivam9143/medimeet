@@ -4,7 +4,7 @@ import injector
 
 from authentication.services.otp.otp_service_interface import OTPServiceInterface
 from core.logging_config import medimeetlogger
-from core.redis_service import RedisService
+# from core.redis_service import RedisService
 from core.request_client import RequestSingleton
 from medimeet.settings import env
 
@@ -15,7 +15,7 @@ class SMSOTPServiceInterface(OTPServiceInterface):
      """
 
     @injector.inject
-    def __init__(self, rs: RedisService):
+    def __init__(self):
         self.base_url = env('CPaaS_BASE_URL')
         self.verify_otp = env('VERIFY_OTP_ENDPOINT')
         self.endpoint = env('OTP_ENDPOINT')
@@ -24,7 +24,7 @@ class SMSOTPServiceInterface(OTPServiceInterface):
         self.auth_token = env('SMS_API_AUTH_TOKEN')
         self.country_code = env('COUNTRY_CODE', default='91')  # Default to India
         self.otp_length = env('OTP_LENGTH', default='6')  # Default to 6 digits
-        self.redis_service = rs
+        # self.redis_service = rs
 
     def construct_send_otp_url(self, mobile_number):
         """
@@ -52,14 +52,14 @@ class SMSOTPServiceInterface(OTPServiceInterface):
             f"&code={otp_code}"
         )
 
-    def generate_otp(self):
-        return f"{random.randint(100000, 999999)}"
+    # def generate_otp(self):
+    #     return f"{random.randint(100000, 999999)}"
 
-    def is_retry_allowed(self, mobile_number):
-        return self.redis_service.is_retry_allowed(mobile_number=mobile_number)
-
-    def store_otp(self, mobile_number, otp):
-        self.redis_service.store_otp(mobile_number=mobile_number, otp=otp)
+    # def is_retry_allowed(self, mobile_number):
+    #     return self.redis_service.is_retry_allowed(mobile_number=mobile_number)
+    #
+    # def store_otp(self, mobile_number, otp):
+    #     self.redis_service.store_otp(mobile_number=mobile_number, otp=otp)
 
     def send_otp(self, mobile_number, otp):
         """

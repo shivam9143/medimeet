@@ -6,9 +6,9 @@ from authentication.services.verify_otp.otp_verification_service import OTPVerif
 from authentication.services.register_user.register_user_service import UserRegistrationService
 from authentication.services.otp.sms_otp_service import SMSOTPServiceInterface
 from authentication.services.user_service.user_service import UserService
-from core.redis_client import RedisConnection
-from core.redis_client_interfaces import IRedisConnection
-from core.redis_service import RedisService
+# from core.redis_client import RedisConnection
+# from core.redis_client_interfaces import IRedisConnection
+# from core.redis_service import RedisService
 
 
 class AuthServiceModule(injector.Module):
@@ -19,8 +19,8 @@ class AuthServiceModule(injector.Module):
         binder.bind(SMSOTPServiceInterface, to=SMSOTPServiceInterface)
         binder.bind(JWTService, to=JWTService)
         binder.bind(UserService, to=UserService)
-        binder.bind(IRedisConnection, to=RedisConnection)
-        binder.bind(RedisService, to=RedisService)
+        # binder.bind(IRedisConnection, to=RedisConnection)
+        # binder.bind(RedisService, to=RedisService)
 
 
 # Auth Injector Instance
