@@ -1,5 +1,7 @@
 # clinic_management/serializers.py
 from rest_framework import serializers
+
+from authentication.serializers import UserSerializer
 from .models import Doctor, Appointment, Slot
 
 
@@ -16,7 +18,12 @@ class SlotSerializer(serializers.ModelSerializer):
         fields = ['id', 'start_time', 'end_time', 'is_available']
 
 
+# Main Appointment Serializer
 class AppointmentSerializer(serializers.ModelSerializer):
+    patient = UserSerializer()  # Nested UserSerializer for patient details
+    doctor = DoctorSerializer()  # Nested DoctorSerializer for doctor details
+    slot = SlotSerializer()  # Nested SlotSerializer for slot details
+
     class Meta:
         model = Appointment
-        fields = '__all__'
+        fields = ['id', 'patient', 'doctor', 'slot', 'status']  # Include other fields as necessary

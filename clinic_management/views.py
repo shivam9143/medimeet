@@ -83,54 +83,66 @@ class ScheduleAppointmentView(APIView):
 class BookAppointmentView(APIView):
 
     def post(self, request, *args, **kwargs):
-        # Get the request body data (assuming it's JSON)
+        # Get the slot_id from URL parameters
         slot_id = kwargs.get('slot_id')
-        print(f"slot id {slot_id}")
-        print("heree 001")
 
-    # Check if the slot exists and is available
+        if not slot_id:
+            return create_response(status.HTTP_400_BAD_REQUEST, error="Slot ID missing", message="Slot ID is required.")
+
+        # Attempt to retrieve the slot
         try:
             slot = Slot.objects.get(id=slot_id)
-            print(f"Slot availability: {slot.is_available}")
-
-            print("heree 002")
-            if not slot.is_available:
-                print("heree 003")
-                create_response(status.HTTP_400_BAD_REQUEST, error="Slot is not available",
-                                message="Something went wrong")
         except Slot.DoesNotExist:
-            print("heree 004")
-            create_response(status.HTTP_404_NOT_FOUND, error="Slot not found.", message="Something went wrong")
-            print("heree 00")
+            return create_response(status.HTTP_404_NOT_FOUND, error="Slot not found", message="The requested slot does not exist.")
 
+        # Check if the slot is available
+        if not slot.is_available:
+            return create_response(status.HTTP_400_BAD_REQUEST, error="Slot not available", message="The requested slot is already booked.")
+
+        # Attempt to create the appointment
         try:
-            # Create the appointment record
+            # Create the appointment
             appointment = Appointment.objects.create(
-                patient=request.user,  # The user making the request (ensure they are authenticated)
+                patient=request.user,  # Assuming the user is authenticated
                 slot=slot,
                 doctor=slot.doctor_schedule.doctor,
                 status='Booked'
             )
 
-            print("heree 11")
-            serializer = SlotSerializer(slot, data={"is_available": False}, partial=True)
-            if serializer.is_valid():
-                serializer.save()
-            # Mark the slot as booked
-            # slot.is_available = False
-            # slot.save()
-            # print(f"Slot saved? {serializer.is_available}")  # Debugging
-            # print("heree 33")
+            # Mark the slot as unavailable
+            slot_serializer = SlotSerializer(slot, data={"is_available": False}, partial=True)
+            if slot_serializer.is_valid():
+                slot_serializer.save()
 
-            # Return the appointment details as the response
-            return create_response(code=status.HTTP_201_CREATED, data={
+            # Return the appointment details
+            return create_response(status.HTTP_201_CREATED, data={
                 "id": appointment.id,
                 "patient": appointment.patient.id,
                 "doctor": appointment.doctor.id,
                 "appointment_time": str(slot),
                 "status": appointment.status
-            }, message="Success")
-            print("heree 44")
+            }, message="Appointment successfully booked.")
 
         except Exception as e:
-            return create_response(code=status.HTTP_400_BAD_REQUEST, error=str(e), message="Something went wrong!")
+            # Return error in case of any failure during appointment creation
+            return create_response(status.HTTP_400_BAD_REQUEST, error=str(e), message="Something went wrong!")
+
+
+class GetAppointmentsView(APIView):
+    # permission_classes = [IsAuthenticated]  # Ensure the user is authenticated
+
+    def get(self, request, *args, **kwargs):
+        # Fetch appointments only for the authenticated user
+        try:
+            appointments = Appointment.objects.filter(patient=request.user)
+
+            if not appointments:
+                return create_response(status.HTTP_404_NOT_FOUND, error="No appointments found", message="You have no appointments.")
+
+            # Serialize the appointments
+            serializer = AppointmentSerializer(appointments, many=True)
+
+            return create_response(status.HTTP_200_OK, data=serializer.data, message="Appointments retrieved successfully.")
+
+        except Exception as e:
+            return create_response(status.HTTP_400_BAD_REQUEST, error=str(e), message="Something went wrong!")
