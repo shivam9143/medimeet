@@ -39,12 +39,12 @@ class OTPVerificationService(VerifyUserServiceInterface):
                 self.user_service.mark_user_verified(mobile_number)
                 user_data = UserSerializer(user).data  # This is now serialized into a dictionary
                 medimeetlogger.debug(f"user_data  {user_data}")
-                userid=user_data['id']
-                medimeetlogger.debug(f"user_data user_id  {userid}")
+                # userid=user_data['id']
+                # medimeetlogger.debug(f"user_data user_id  {userid}")
 
                 # Generate JWT token
                 token = self.jwt_service.generate_jwt(user=user)
-                medimeetlogger.debug(f"token  {token}")
+                # medimeetlogger.debug(f"token  {token}")
 
                 # Construct and return success response
                 return self._construct_success_response(user_data, token)
@@ -80,7 +80,7 @@ class OTPVerificationService(VerifyUserServiceInterface):
         except Exception as e:
             logger.error(f"Error during OTP verification: {e}")
             return create_response(code=status.HTTP_500_INTERNAL_SERVER_ERROR, message="Error during OTP verification",
-                                   error="Unable to verify OTP at this moment. Please try again later.")
+                                   error=str(e))
 
     def _validate_otp(self, mobile_number: str, otp: str, verification_id: str):
         """Validates the OTP for the given mobile number."""
