@@ -41,15 +41,15 @@ class SendOTPService:
         """
         Handles OTP sending logic, including rate-limiting checks and OTP generation.
         """
-        allowed, retry_time = self.otp_sending_service.is_retry_allowed(mobile_number)
-        medimeetlogger.error(f"is Allowed mobile number: {allowed, retry_time}")
-
-        if not allowed:
-            return create_response(
-                code=status.HTTP_429_TOO_MANY_REQUESTS,
-                error=f"Please wait {retry_time} seconds before retrying.",
-                message="Something went wrong!"
-            )
+        # allowed, retry_time = self.otp_sending_service.is_retry_allowed(mobile_number)
+        # medimeetlogger.error(f"is Allowed mobile number: {allowed, retry_time}")
+        #
+        # if not allowed:
+        #     return create_response(
+        #         code=status.HTTP_429_TOO_MANY_REQUESTS,
+        #         error=f"Please wait {retry_time} seconds before retrying.",
+        #         message="Something went wrong!"
+        #     )
 
         if mobile_number == "9044224967":
             # Return a dummy verification ID
