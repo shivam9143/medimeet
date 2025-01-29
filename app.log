@@ -133,3 +133,8 @@
 2025-01-29 19:22:56,716 - core.logging_config - ERROR - is Allowed mobile number: (True, None)
 2025-01-29 19:25:15,441 - core.logging_config - ERROR - is Allowed mobile number: (True, None)
 2025-01-29 19:25:16,644 - core.logging_config - DEBUG - OTP sent successfully. Response: {"responseCode":200,"message":"SUCCESS","data":{"verificationId":"1776654","mobileNumber":"6307788639","responseCode":"200","timeout":"60.0","transactionId":"a15bafa8-c7e5-477f-b700-383487af6857"}}
+2025-01-29 19:39:25,520 - core.logging_config - ERROR - is Allowed mobile number: (True, None)
+2025-01-29 19:39:50,034 - core.logging_config - ERROR - is Allowed mobile number: (False, 35)
+2025-01-29 19:39:57,112 - core.logging_config - ERROR - is Allowed mobile number: (False, 28)
+2025-01-29 19:39:58,136 - core.logging_config - ERROR - is Allowed mobile number: (False, 27)
+2025-01-29 19:39:59,043 - core.logging_config - ERROR - is Allowed mobile number: (False, 26)

@@ -30,7 +30,11 @@ class SendOTPService:
                 return response
 
             return create_response(code=status.HTTP_201_CREATED, message="OTP sent to your mobile number.")
-        return create_response(code=status.HTTP_400_BAD_REQUEST, error=str(serializer.errors),
+
+        # Serialize the error details to extract actual messages (strings)
+        error_details = {key: [str(value[0])] for key, value in serializer.errors.items()}
+
+        return create_response(code=status.HTTP_400_BAD_REQUEST, error=error_details,
                                message="Something went wrong!")
 
     def handle_otp_sending(self, mobile_number):
