@@ -138,3 +138,11 @@
 2025-01-29 19:39:57,112 - core.logging_config - ERROR - is Allowed mobile number: (False, 28)
 2025-01-29 19:39:58,136 - core.logging_config - ERROR - is Allowed mobile number: (False, 27)
 2025-01-29 19:39:59,043 - core.logging_config - ERROR - is Allowed mobile number: (False, 26)
+2025-01-29 20:20:43,081 - core.logging_config - DEBUG - user_data  {'id': '5468066d-cc9b-4f75-b38b-690a8aa39046', 'name': 'Shivam Kanodia', 'age': 28, 'gender': 'Male', 'mobile_number': '9044224967', 'photo_url': None, 'is_verified': True, 'created_at': '2025-01-29T03:12:46.156620Z'}
+2025-01-29 20:20:43,083 - core.logging_config - DEBUG - user_data user_id  5468066d-cc9b-4f75-b38b-690a8aa39046
+2025-01-29 20:20:43,088 - core.logging_config - DEBUG - token  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM4MTg1NjQzLCJpYXQiOjE3MzgxODIwNDMsImp0aSI6IjAzMjAzOTdjNWI3NzRmOTVhZTRiYzlhZDZjYmRiNDhkIiwidXNlcl9pZCI6IjU0NjgwNjZkLWNjOWItNGY3NS1iMzhiLTY5MGE4YWEzOTA0NiJ9.lw4H45AVfopMPpvZAvq775YxXK7mttQNBG7INP1T3WY
+2025-01-29 20:21:11,534 - core.logging_config - DEBUG - {"responseCode":505,"message":"verificationId is invalid","data":null}
+2025-01-29 20:21:11,535 - core.logging_config - DEBUG - _validate_otp res Invalid verification ID.
+2025-01-29 20:21:14,688 - core.logging_config - DEBUG - user_data  {'id': '5468066d-cc9b-4f75-b38b-690a8aa39046', 'name': 'Shivam Kanodia', 'age': 28, 'gender': 'Male', 'mobile_number': '9044224967', 'photo_url': None, 'is_verified': True, 'created_at': '2025-01-29T03:12:46.156620Z'}
+2025-01-29 20:21:14,689 - core.logging_config - DEBUG - user_data user_id  5468066d-cc9b-4f75-b38b-690a8aa39046
+2025-01-29 20:21:14,690 - core.logging_config - DEBUG - token  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM4MTg1Njc0LCJpYXQiOjE3MzgxODIwNzQsImp0aSI6ImM5Y2YwMmY1MGI5MzRlOTJiZGE2NjIyNDQ1NjZjZTcyIiwidXNlcl9pZCI6IjU0NjgwNjZkLWNjOWItNGY3NS1iMzhiLTY5MGE4YWEzOTA0NiJ9.fAs_oO_DFckACjNrzicIgVg6tiPyyHAsKdI4oEOiUU0

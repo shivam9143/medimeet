@@ -57,6 +57,6 @@ class VerifyOTPAPIView(APIView):
             return self.otp_verification_service.verify_user(mobile_number, otp, verification_id)
 
         # Serialize the error details to extract actual messages (strings)
-        error_details = {key: [str(value[0])] for key, value in serializer.errors.items()}
+        # error_details = {key: [str(value[0])] for key, value in serializer.errors.items()}
 
-        return create_response(error=error_details, code=status.HTTP_400_BAD_REQUEST, message="Something went wrong")
+        return create_response(error="error_details", code=status.HTTP_400_BAD_REQUEST, message="Something went wrong")

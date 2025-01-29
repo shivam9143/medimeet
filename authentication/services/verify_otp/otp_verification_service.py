@@ -5,13 +5,12 @@ from rest_framework import status
 from rest_framework.response import Response
 
 from authentication.serializers import UserSerializer
-from authentication.services.otp.sms_otp_service import SMSOTPServiceInterface
-from authentication.services.verify_otp.verify_user_service_interface import VerifyUserServiceInterface
 from authentication.services.jwt_service.jwt_service import JWTService
+from authentication.services.otp.sms_otp_service import SMSOTPServiceInterface
 from authentication.services.user_service.user_service import UserService
+from authentication.services.verify_otp.verify_user_service_interface import VerifyUserServiceInterface
 from core.create_response import create_response
 from core.logging_config import medimeetlogger
-from core.redis_service import RedisService
 
 logger = logging.getLogger(__name__)
 
@@ -22,9 +21,9 @@ class OTPVerificationService(VerifyUserServiceInterface):
     """
 
     @injector.inject
-    def __init__(self, redis_service: RedisService, jwt_service: JWTService, user_service: UserService,
+    def __init__(self, jwt_service: JWTService, user_service: UserService,
                  otp_service: SMSOTPServiceInterface):
-        self.redis_service = redis_service
+        # self.redis_service = redis_service
         self.jwt_service = jwt_service
         self.user_service = user_service
         self.otp_service = otp_service
