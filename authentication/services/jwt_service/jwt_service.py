@@ -12,7 +12,7 @@ from medimeet import settings
 
 class JWTService:
     def generate_jwt(self, user):
-        print("jeh3bdfjhrwf wrffr")
+        # print("jeh3bdfjhrwf wrffr")
 
         refresh = RefreshToken.for_user(user)
         # print("jeh3bdfjhrwf ")
