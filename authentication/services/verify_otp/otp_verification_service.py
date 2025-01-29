@@ -88,9 +88,9 @@ class OTPVerificationService(VerifyUserServiceInterface):
         success, msg = self.otp_service.validate_otp_api(mobile_number=mobile_number, verification_id=verification_id,
                                                          otp_code=otp)
 
-        if success:
-            # OTP is valid; delete it from Redis
-            self.redis_service.delete(f"otp_{mobile_number}")
+        # if success:
+        #     # OTP is valid; delete it from Redis
+        #     self.redis_service.delete(f"otp_{mobile_number}")
 
         return success, msg
 

@@ -53,7 +53,7 @@ class SendOTPService:
 
         if mobile_number == "9044224967":
             # Return a dummy verification ID
-            self.otp_sending_service.store_otp(mobile_number=mobile_number, otp="123456")
+            # self.otp_sending_service.store_otp(mobile_number=mobile_number, otp="123456")
             return create_response(
                 code=status.HTTP_201_CREATED,
                 message="OTP sent to your mobile number.",
@@ -67,7 +67,7 @@ class SendOTPService:
         # Send OTP and store it
         self.otp_sending_service.construct_send_otp_url(mobile_number=mobile_number)
         otp = self.otp_sending_service.generate_otp()
-        otp = self.otp_sending_service.store_otp(mobile_number=mobile_number, otp=otp)
+        # otp = self.otp_sending_service.store_otp(mobile_number=mobile_number, otp=otp)
         response = self.otp_sending_service.send_otp(mobile_number=mobile_number, otp=otp)
 
         # Handle OTP sending response
