@@ -1,4 +1,5 @@
 import logging
+import traceback
 
 import injector
 from rest_framework import status
@@ -78,9 +79,15 @@ class OTPVerificationService(VerifyUserServiceInterface):
                                    error=str(e))
 
         except Exception as e:
+            error_trace = traceback.format_exc()  # Get full traceback
             logger.error(f"Error during OTP verification: {e}")
-            return create_response(code=status.HTTP_500_INTERNAL_SERVER_ERROR, message="Error during OTP verification",
-                                   error=str(e))
+            return create_response(
+                code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                message="Error during OTP verification",
+                error=f"{str(e)} | Traceback: {error_trace}"  # Include traceback in response (optional)
+            )
+            # return create_response(code=status.HTTP_500_INTERNAL_SERVER_ERROR, message="Error during OTP verification",
+            #                        error=str(e))
 
     def _validate_otp(self, mobile_number: str, otp: str, verification_id: str):
         """Validates the OTP for the given mobile number."""

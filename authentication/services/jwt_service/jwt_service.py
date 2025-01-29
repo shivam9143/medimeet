@@ -10,14 +10,12 @@ from rest_framework_simplejwt import exceptions
 from medimeet import settings
 
 
-
-
 class JWTService:
     def generate_jwt(self, user):
         print("jeh3bdfjhrwf wrffr")
 
         refresh = RefreshToken.for_user(user)
-        print("jeh3bdfjhrwf ")
+        # print("jeh3bdfjhrwf ")
         # Set expiration of access token (typically 1 hour for access token)
         access_token = refresh.access_token
         access_token.set_exp(lifetime=timedelta(hours=1))  # Set custom expiration time if required
