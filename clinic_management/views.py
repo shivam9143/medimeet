@@ -1,58 +1,68 @@
-import json
+import traceback
 
-from django.core.exceptions import ObjectDoesNotExist
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated, AllowAny
-from rest_framework.views import APIView
-from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.exceptions import APIException
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
+from CustomJWTAuthentication import CustomJWTAuthentication
 from core.create_response import create_response
-from .models import User, Doctor, Appointment, DoctorSchedule, Slot
-from .serializers import DoctorSerializer, AppointmentSerializer, SlotSerializer
-
-# clinic_management/views.py
-from rest_framework import generics
-from rest_framework.pagination import PageNumberPagination
+from .models import Appointment, DoctorSchedule, Slot
 from .models import Doctor
+from .serializers import AppointmentSerializer, SlotSerializer
 from .serializers import DoctorSerializer
 
 
-# Create a custom pagination class
-class ListPagination(PageNumberPagination):
-    page_size = 10  # Adjust the number of items per page
-    page_size_query_param = 'page_size'
-    max_page_size = 100
-
-
 class DoctorListAPIView(APIView):
-    def get(self, request, *args, **kwargs):
-        doctors = Doctor.objects.all()
+    authentication_classes = [CustomJWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
-        if not doctors.exists():
-            # Return 404 with a custom message
-            msg = "Doctors not found"
+    def get(self, request, **kwargs):
+        try:
+            doctors = Doctor.objects.all()
+
+            if not doctors.exists():
+                # Return 404 with a custom message
+                msg = "Doctors not found"
+                return create_response(
+                    code=status.HTTP_404_NOT_FOUND,
+                    message=msg,
+                    error=msg,
+                    data=None
+                )
+
+            # Serialize the data
+            serializer = DoctorSerializer(doctors, many=True)
             return create_response(
-                code=status.HTTP_404_NOT_FOUND,
-                message=msg,
-                error=msg,
+                code=status.HTTP_200_OK,
+                message="Doctors retrieved successfully",
+                error=None,
+                data=serializer.data
+            )
+
+        except APIException as e:
+            error_trace = traceback.format_exc()  # Get full traceback
+            # logger.error(f"Error during OTP verification: {e}")
+            return create_response(
+                code=status.HTTP_400_BAD_REQUEST,
+                message="An error occurred while fetching doctors.",
+                error=f"{str(e)} | Traceback: {error_trace}"  # Include traceback in response (optional)
+            )
+        except Exception as e:
+            error_trace = traceback.format_exc()  # Get full traceback
+            # Catch any other unexpected exceptions
+            return create_response(
+                code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                message="An unexpected error occurred.",
+                error=f"{str(e)} | Traceback: {error_trace}",  # Include traceback in response (optional)
                 data=None
             )
 
-        # Serialize the data
-        serializer = DoctorSerializer(doctors, many=True)
-        return create_response(
-            code=status.HTTP_200_OK,
-            message="Doctors retrieved successfully",
-            error=None,
-            data=serializer.data
-        )
-
 
 class SlotListView(APIView):
-    permission_classes = [AllowAny]
+    authentication_classes = [CustomJWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, doctor_id, *args, **kwargs):
         # Get the doctor schedule for the given doctor_id
@@ -73,6 +83,9 @@ class SlotListView(APIView):
 
 
 class ScheduleAppointmentView(APIView):
+    authentication_classes = [CustomJWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
     def post(self, request):
         serializer = AppointmentSerializer(data=request.data)
         if serializer.is_valid():
@@ -82,6 +95,8 @@ class ScheduleAppointmentView(APIView):
 
 
 class BookAppointmentView(APIView):
+    authentication_classes = [CustomJWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def post(self, request, *args, **kwargs):
         # Get the slot_id from URL parameters
@@ -132,7 +147,8 @@ class BookAppointmentView(APIView):
 
 
 class GetAppointmentsView(APIView):
-    # permission_classes = [IsAuthenticated]  # Ensure the user is authenticated
+    authentication_classes = [CustomJWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
         # Fetch appointments only for the authenticated user
@@ -154,6 +170,8 @@ class GetAppointmentsView(APIView):
 
 
 class CancelAppointmentView(APIView):
+    authentication_classes = [CustomJWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
         slot_id = request.data.get("slot_id")

@@ -30,30 +30,26 @@ class SendOTPService:
                 return response
 
             return create_response(code=status.HTTP_201_CREATED, message="OTP sent to your mobile number.")
-
-        # Serialize the error details to extract actual messages (strings)
-        error_details = {key: [str(value[0])] for key, value in serializer.errors.items()}
-
-        return create_response(code=status.HTTP_400_BAD_REQUEST, error=error_details,
+        return create_response(code=status.HTTP_400_BAD_REQUEST, error=str(serializer.errors),
                                message="Something went wrong!")
 
     def handle_otp_sending(self, mobile_number):
         """
         Handles OTP sending logic, including rate-limiting checks and OTP generation.
         """
-        # allowed, retry_time = self.otp_sending_service.is_retry_allowed(mobile_number)
-        # medimeetlogger.error(f"is Allowed mobile number: {allowed, retry_time}")
-        #
-        # if not allowed:
-        #     return create_response(
-        #         code=status.HTTP_429_TOO_MANY_REQUESTS,
-        #         error=f"Please wait {retry_time} seconds before retrying.",
-        #         message="Something went wrong!"
-        #     )
+        allowed, retry_time = self.otp_sending_service.is_retry_allowed(mobile_number)
+        medimeetlogger.error(f"is Allowed mobile number: {allowed, retry_time}")
+
+        if not allowed:
+            return create_response(
+                code=status.HTTP_429_TOO_MANY_REQUESTS,
+                error=f"Please wait {retry_time} seconds before retrying.",
+                message="Something went wrong!"
+            )
 
         if mobile_number == "9044224967":
             # Return a dummy verification ID
-            # self.otp_sending_service.store_otp(mobile_number=mobile_number, otp="123456")
+            self.otp_sending_service.store_otp(mobile_number=mobile_number, otp="123456")
             return create_response(
                 code=status.HTTP_201_CREATED,
                 message="OTP sent to your mobile number.",
@@ -67,7 +63,7 @@ class SendOTPService:
         # Send OTP and store it
         self.otp_sending_service.construct_send_otp_url(mobile_number=mobile_number)
         otp = self.otp_sending_service.generate_otp()
-        # otp = self.otp_sending_service.store_otp(mobile_number=mobile_number, otp=otp)
+        otp = self.otp_sending_service.store_otp(mobile_number=mobile_number, otp=otp)
         response = self.otp_sending_service.send_otp(mobile_number=mobile_number, otp=otp)
 
         # Handle OTP sending response
@@ -89,8 +85,9 @@ class SendOTPService:
                 }
             )
         else:  # Failure case
+            error_message = response.get("message", "Failed to send OTP.")
             return create_response(
                 code=status.HTTP_400_BAD_REQUEST,
-                error="Failed to send OTP",
+                error=error_message,
                 message="Something went wrong!"
             )
