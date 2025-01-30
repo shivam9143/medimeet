@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "medimeet"
+version = "0.1.0"
+description = ""
+authors = ["Shivam Kanodia <107026221+shivamkanodia9143@users.noreply.github.com>"]
+#readme = "README.md"
+
+
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^5.1.5"
+djangorestframework = "^3.15.2"
+djangorestframework-simplejwt = "^5.4.0"
+psycopg2-binary = "^2.9.10"
+django-redis = "^5.4.0"
+django-environ = "^0.12.0"
+injector = "^0.22.0"
+requests = "^2.32.3"
+gunicorn = "^23.0.0"
+django-cors-headers = "^4.6.0"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.4"
+pytest-django = "^4.9.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
