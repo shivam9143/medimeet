@@ -48,7 +48,7 @@ REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'https://ec2-3-109-212-177.ap-south-1.compute.amazonaws.com/',
                  '3.109.212.177', 'api.rabattindia.com', '13.203.165.249']
